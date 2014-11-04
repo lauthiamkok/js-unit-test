@@ -46,7 +46,7 @@ describe("SimpleService Test 2", function(){
         beforeEach(module('myApp'));
         it('returns Hello World', inject(function(SimpleService){ //parameter name = service name
             expect( SimpleService.prop ).toEqual('Hello World');
-        }))
+        }));
     });
     
 });
