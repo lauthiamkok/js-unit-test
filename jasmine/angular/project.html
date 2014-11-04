@@ -9,26 +9,19 @@
   <link rel="stylesheet" type="text/css" href="lib/jasmine-2.0.3/jasmine.css">
   
   <!-- include lib js files here... -->
+  <script type="text/javascript" src="lib/angular/angular.js"></script>
   <script type="text/javascript" src="lib/jquery/jquery-min.js"></script>
-   
-
+ 
   <!-- include source files here... -->
-  <script type="text/javascript" src="src/countLength.js"></script>
-  <script type="text/javascript" src="src/element.js"></script>
-  <script type="text/javascript" src="src/getHtml.js"></script>
+  <script type="text/javascript" src="src/MainController.js"></script>
+  <script type="text/javascript" src="src/bootstrap.js"></script>
   
   <script type="text/javascript">
-      $(document).ready(function() {
-            console.log(countLength());
-            console.log($('.elem').getHtml());
-            var plugin = $(document).element().data('plugin_element');
-            console.log(plugin.getHtml(".elem"));
-      });
   </script>
 
 </head>
 
 <body>
-    <div class="elem">Hello World</div>
+    <div ng-app="myApp" ng-controller="MainController">{{sayHello()}}</div>
 </body>
 </html>

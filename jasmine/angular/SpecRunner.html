@@ -13,23 +13,19 @@
   <script type="text/javascript" src="lib/jasmine-2.0.3/jasmine-html.js"></script>
   <script type="text/javascript" src="lib/jasmine-2.0.3/boot.js"></script>
   
-  <!-- include jquery & jasmine-jquery js files here... -->
-  <script type="text/javascript" src="lib/jquery/jquery-min.js"></script>
-  <script type="text/javascript" src="lib/jasmine-jquery/jasmine-jquery.js"></script>
-   
+  <!-- include angular & mocks js files here... -->
+  <script type="text/javascript" src="lib/angular/angular.js"></script>
+  <script type="text/javascript" src="lib/angular-mocks/angular-mocks.js"></script>
+  
   <!-- include source files here... -->
-  <script type="text/javascript" src="src/countLength.js"></script>
-  <script type="text/javascript" src="src/getHtml.js"></script>
-  <script type="text/javascript" src="src/element.js"></script>
+  <script type="text/javascript" src="src/MainController.js"></script>
 
   <!-- include spec files here... -->
-  <script type="text/javascript" src="spec/countLengthSpec.js"></script>
-  <script type="text/javascript" src="spec/getHtmlSpec.js"></script>
-  <script type="text/javascript" src="spec/elementSpec.js"></script>
-  
+  <script type="text/javascript" src="spec/MainControllerSpec.js"></script>
+
 </head>
 
 <body>
-    <div class="elem">Hello World</div>
+    <div ng-app="myApp" ng-controller="MainController">{{sayHello()}}</div>
 </body>
 </html>
