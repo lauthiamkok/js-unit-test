@@ -1,11 +1,15 @@
 describe('Plugin $.fn.getHTML', function () {
-    it("says string 'Element'", function () {
-        expect($('.elem').getHtml()).toEqual('Element');
+    it("says string 'Hello World'", function () {
+        expect($('.elem').getHtml()).toEqual('Hello World');
     });
     
     it("says it is a string", function () {
         expect($('.elem').getHtml()).toEqual(jasmine.any(String) || null);
     }); 
+    
+    it("contains 'Hello'", function () {
+        expect($('.elem').getHtml()).toContain('Hello');
+    });
 });
 /*
 describe('Function countLength', function () {

@@ -3,7 +3,7 @@ describe('Hello World', function () {
         expect(helloWorld()).toEqual('Hello World');
     });
     
-    it("contails 'Hello'", function () {
+    it("contains 'Hello'", function () {
         expect(helloWorld()).toContain('Hello');
     });
 });
