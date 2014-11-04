@@ -7,18 +7,3 @@ app.controller('SimpleController', function($scope) {
         return $scope.greeting = "Hello " + $scope.name;
     };
 });
-
-app.factory("SimpleService", function(){
-    var service = {
-        prop:'Hello World',
-        getData: function(){
-            return [{
-                id: 1,
-                name: "Mark"
-            }];
-        }
-
-    };
-
-    return service;
-});
