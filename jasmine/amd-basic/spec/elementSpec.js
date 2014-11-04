@@ -43,7 +43,7 @@ describe('Advanced AMD - Option 2', function () {
             // Run some setup, like creating new objects
             plugin = $(document).element().data('plugin_element');
             
-            // What’s this
+            // What's this
             // This means that you can define something in beforeEach with this.someObj = … and you can access that object within it with this.someObj. 
             this.test = plugin.getHtml(".elem");
         });
@@ -77,11 +77,14 @@ describe('Advanced AMD - Option 2', function () {
 });
 
 // Option 2 - Spy:
+// Spies are really cool and take advantage of JavaScript's dynamic nature to allow you to get some interesting metadata about what is happening behind the scenes in some objects. 
+// For instance, if you're testing a function that takes a callback argument, you might want to be certain that the callback was indeed called properly. 
+// You can spy on the callback method to see if it was called and even what arguments it was called with and how many times it was called.
 describe('Advanced AMD - A Spy', function () {
 
     describe('Plugin element', function () {
         
-        var plugin;
+        var plugin, fetchedBar;
         
         // Setup & Cleanup
         // This way, if you have some common setup or teardown procedures, you can place them inside one of these functions and only write it once instead of repeating it within each of your it blocks.
@@ -92,11 +95,14 @@ describe('Advanced AMD - A Spy', function () {
             // Run some setup, like creating new objects
             plugin = $(document).element().data('plugin_element');
             
-            // What’s this
+            // What's this
             // This means that you can define something in beforeEach with this.someObj = … and you can access that object within it with this.someObj. 
             this.test = plugin.getHtml(".elem");
             
-            spyOn(plugin, 'getHtml');
+            spyOn(plugin, 'getHtml').and.returnValue(745);
+            //(plugin, 'getHtml');
+            
+            fetchedBar = plugin.getHtml();
             
             plugin.getHtml(".elem");
         });
@@ -112,13 +118,17 @@ describe('Advanced AMD - A Spy', function () {
             expect(plugin.getHtml).toHaveBeenCalled();
         });
         
-         it("tracks the number of times it was called", function() {
-            expect(plugin.getHtml.calls.count()).toEqual(1);
+        it("tracks the number of times it was called", function() {
+            expect(plugin.getHtml.calls.count()).toEqual(2);
 
             plugin.getHtml(".elem");
             plugin.getHtml(".elem");
 
-            expect(plugin.getHtml.calls.count()).toEqual(3);
+            expect(plugin.getHtml.calls.count()).toEqual(4);
+        });
+        
+        it("when called returns the requested value", function() {
+            expect(fetchedBar).toEqual(745);
         });
     });
 
