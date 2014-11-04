@@ -19,6 +19,18 @@ describe("SimpleService Test 1", function(){
         it("should return an object", function(){
             expect(service.getData()).toEqual(jasmine.any(Object));
         });
+        
+        it("matches objects with the expect key/value pairs", function() {
+            expect(service.getData()[0]).toEqual(jasmine.objectContaining({
+                id: 1
+            }));
+            expect(service.getData()[0]).toEqual(jasmine.objectContaining({
+                name: "Mark"
+            }));
+            expect(service.getData()[0]).not.toEqual(jasmine.objectContaining({
+                name: "John"
+            }));
+        });
     });
     
     describe('when I call SimpleService.prop', function(){
