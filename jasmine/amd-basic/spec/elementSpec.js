@@ -7,7 +7,7 @@ describe("A description or subject for your test suite", function(){
 
 // Suites can be nested inside of each other too. This allows you fine-grained organization of code into hierarchical structures.
 // Option 1:
-describe('Advanced AMD', function () {
+describe('Advanced AMD - Option 1', function () {
 
     describe('Plugin element', function () {
         var plugin = $(document).element().data('plugin_element');
@@ -28,9 +28,11 @@ describe('Advanced AMD', function () {
 });
 
 // Option 2:
-describe('Advanced AMD', function () {
+describe('Advanced AMD - Option 2', function () {
 
     describe('Plugin element', function () {
+        
+        var plugin;
         
         // Setup & Cleanup
         // This way, if you have some common setup or teardown procedures, you can place them inside one of these functions and only write it once instead of repeating it within each of your it blocks.
@@ -39,7 +41,7 @@ describe('Advanced AMD', function () {
         // It means each of 'it(...)'.
         beforeEach(function(){ 
             // Run some setup, like creating new objects
-            var plugin = $(document).element().data('plugin_element');
+            plugin = $(document).element().data('plugin_element');
             
             // What’s this
             // This means that you can define something in beforeEach with this.someObj = … and you can access that object within it with this.someObj. 
@@ -69,6 +71,54 @@ describe('Advanced AMD', function () {
             // beforeEach is run before this
             expect(this.test).toContain('Hello');
             // afterEach is run after this
+        });
+    });
+
+});
+
+// Option 2 - Spy:
+describe('Advanced AMD - A Spy', function () {
+
+    describe('Plugin element', function () {
+        
+        var plugin;
+        
+        // Setup & Cleanup
+        // This way, if you have some common setup or teardown procedures, you can place them inside one of these functions and only write it once instead of repeating it within each of your it blocks.
+        
+        // Setup
+        // It means each of 'it(...)'.
+        beforeEach(function(){ 
+            // Run some setup, like creating new objects
+            plugin = $(document).element().data('plugin_element');
+            
+            // What’s this
+            // This means that you can define something in beforeEach with this.someObj = … and you can access that object within it with this.someObj. 
+            this.test = plugin.getHtml(".elem");
+            
+            spyOn(plugin, 'getHtml');
+            
+            plugin.getHtml(".elem");
+        });
+
+        // Cleanup
+        // It means each of 'it(...)'.
+        afterEach(function(){
+            // Run some cleanup like disconnecting WebSockets
+            this.test = null;
+        });
+        
+        it("tracks that the spy was called", function() {
+            expect(plugin.getHtml).toHaveBeenCalled();
+        });
+        
+         it("tracks the number of times it was called", function() {
+            expect(plugin.getHtml.calls.count()).toEqual(1);
+
+            plugin.getHtml(".elem");
+            plugin.getHtml(".elem");
+
+            expect(plugin.getHtml.calls.count()).toEqual(3);
         });
     });
 
