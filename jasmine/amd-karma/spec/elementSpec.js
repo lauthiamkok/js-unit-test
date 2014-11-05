@@ -10,6 +10,10 @@ describe("A description or subject for your test suite", function(){
 describe('Advanced AMD - Option 1', function () {
 
     describe('Plugin element', function () {
+        beforeEach(function(){
+            setUpHTMLFixture();
+        });
+
         var plugin = $(document).element().data('plugin_element');
 
         it("says string 'Hello World'", function () {
@@ -31,6 +35,10 @@ describe('Advanced AMD - Option 1', function () {
 describe('Advanced AMD - Option 2', function () {
 
     describe('Plugin element', function () {
+        
+        beforeEach(function(){
+            setUpHTMLFixture();
+        });
         
         var plugin;
         
@@ -83,6 +91,10 @@ describe('Advanced AMD - Option 2', function () {
 describe('Advanced AMD - A Spy', function () {
 
     describe('Plugin element', function () {
+        
+        beforeEach(function(){
+            setUpHTMLFixture();
+        });
         
         var plugin, fetchedBar;
         

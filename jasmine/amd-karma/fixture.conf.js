@@ -5,17 +5,25 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine-jquery','jasmine'],
+    frameworks: ['jasmine-jquery','jasmine','fixture'],
 
     // list of files / patterns to load in the browser
     files: [
+        //JASMINE,
+        //JASMINE_ADAPTER,
+        
         // dependencies
         'lib/jquery/jquery-min.js',
         'lib/jasmine-jquery/jasmine-jquery.js',
         
         // files to test
         'src/**/*.js',
-        'spec/**/*.js'
+        'spec/**/*.js',
+        
+        // fixtures
+        {pattern: 'spec/fixtures/**/*', watched: true, included: false, served: true},
+        
+        'spec/fixtures/**/*'
     ],
 
     // list of files / patterns to exclude
@@ -24,12 +32,9 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        '**/*.html': ['html2js'],
+        '**/*.json': ['html2js']
     },
-    
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
 
     // web server port
     port: 8080,
@@ -54,10 +59,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false,
-    
-    // Delaying Karm from disconnecting from the browser - if you have this 'disconnected' issue.
-    // It is 10000 msec by default.
-    browserNoActivityTimeout: 600000
+    singleRun: false
   });
 };

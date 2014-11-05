@@ -1,4 +1,8 @@
 describe('Plugin $.fn.getHTML', function () {
+     beforeEach(function(){
+        setUpHTMLFixture();
+    });
+
     it("says string 'Hello World'", function () {
         expect($('.elem').getHtml()).toEqual('Hello World');
     });
