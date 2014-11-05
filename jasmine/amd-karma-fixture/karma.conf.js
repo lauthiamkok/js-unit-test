@@ -5,13 +5,10 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine-jquery','jasmine','fixture'],
+    frameworks: ['jasmine-jquery','jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
-        //JASMINE,
-        //JASMINE_ADAPTER,
-        
         // dependencies
         'lib/jquery/jquery-min.js',
         'lib/jasmine-jquery/jasmine-jquery.js',
@@ -21,9 +18,7 @@ module.exports = function(config) {
         'spec/**/*.js',
         
         // fixtures
-        {pattern: 'spec/fixtures/**/*', watched: true, included: false, served: true},
-        
-        'spec/fixtures/**/*'
+        { pattern: 'fixture/*.html',watched: true,served:  true, included: false}
     ],
 
     // list of files / patterns to exclude
@@ -32,9 +27,13 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        '**/*.html': ['html2js'],
-        '**/*.json': ['html2js']
+        //'**/*.html': []
     },
+    
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['progress'],
 
     // web server port
     port: 8080,
@@ -44,7 +43,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -59,6 +58,10 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: false,
+    
+    // Delaying Karm from disconnecting from the browser - if you have this 'disconnected' issue.
+    // It is 10000 msec by default.
+    browserNoActivityTimeout: 600000
   });
 };
