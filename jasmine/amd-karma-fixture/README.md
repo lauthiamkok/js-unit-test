@@ -5,6 +5,8 @@
 2. Install Karma. Note that it is better to install it globally, so that it can be accessed by any project.
 
     `$ npm install -g karma`
+    
+    and you must install these **globally** as well,
 
     ```
     $ npm install -g karma-cli
@@ -12,9 +14,9 @@
     $ npm install -g karma-chrome-launcher
     $ npm install -g karma-firefox-launcher
     $ npm install -g karma-junit-reporter
-    $ npm install -g karma-fixture --> A plugin for the Karma test runner that loads .html and .json fixtures
-    $ npm install -g karma-html2js-preprocessor --> A Karma plugin. Convert HTML files into JS strings to serve them in a script tag.
     ```
+
+    and maybe others that you may need...
 
 3. Then navigate to the root folder (where all your projects are kept) from the command line in your Command Prompt or Git Bash, e.g,
 
@@ -28,4 +30,3 @@
     `$ karma start karma.conf.js`
 
 5. Note that if you have `karma.conf.js` running already, you need to restart your Git Bash and run the line in step 4 again for each time you make changes in `karma.conf.js`.
-
