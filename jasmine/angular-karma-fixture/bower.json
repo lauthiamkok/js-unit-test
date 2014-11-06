@@ -1,0 +1,10 @@
+{
+  "name": "unit-testing-boilerplate",
+  "version": "0.0.0",
+  "dependencies": {
+        "angular": "latest",
+        "angular-mocks": "latest",
+        "angular-route": "latest",
+        "angular-resource": "latest"
+    }
+}
