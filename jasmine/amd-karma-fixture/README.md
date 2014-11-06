@@ -2,7 +2,7 @@
 
 1. Install node.js.
 
-2. Install Karma. Note you must install it **globally** so that it can be accessed by any project.
+2. Install Karma. Note that you must install it **globally** so that it can be accessed by any project.
 
     `$ npm install -g karma`
     
