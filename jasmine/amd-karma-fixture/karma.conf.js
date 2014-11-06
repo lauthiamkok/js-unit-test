@@ -5,7 +5,7 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine-jquery','jasmine'],
+    frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
