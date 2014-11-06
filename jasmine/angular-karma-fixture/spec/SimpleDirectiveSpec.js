@@ -18,6 +18,18 @@ describe("simpleDirective Test ", function(){
         angular.module("fixture/hello.html", []).run(["$templateCache", function($templateCache) {
             $templateCache.put("fixture/hello.html","<div class=\"customer\"><b>Hello</b> {{customerInfo.name}}</div>");
         }]);
+    
+        /*
+         * Does not work with $http.
+        angular.module("fixture/hello.html", []).run(["$templateCache", "$http", function($templateCache, $http) {
+            $http.get("fixture/hello.html", {
+                cache: $templateCache
+            }).then(function(result) {
+                console.log(result.data);
+                $templateCache.put("fixture/hello.html",result.data);
+            });
+        }]);
+        */
     } 
 
     beforeEach(inject(function($compile,$rootScope) {
@@ -86,5 +98,47 @@ describe("simpleDirective Test ", function(){
         expect(isoScope.customerInfo.address).toBe('');
         expect(isoScope.customerInfo.name).toBe('Igor');
     });
+    
+    // jQuery ajax & Jasmine done().
+    // Does not work with Karma.
+    if (typeof window.__karma__ === 'undefined') {
+        describe('"fixture/hello.html" should', function() {
+            var pageStatus,contents;
+
+            beforeEach(function (done) {
+                $.get("fixture/hello.html", function (data, status) {
+                    contents = data;
+                    pageStatus = status;
+                    done();
+                }).fail(function (object, status) {
+                    pageStatus = status;
+                    done();
+                });
+            });
+
+            it('exist', function(done) {
+                expect(pageStatus).toBe('success');
+                done();
+            });
+
+            it('have content', function(done) {
+                expect(contents).not.toBe('');
+                expect(contents).not.toBe(undefined);
+                done();
+            });
+
+            it('renders the customer template', function(done) {
+
+                // jQuery's check to be true or false --> hasClass.
+                var customer = $(contents).hasClass('customer');
+                console.log (customer); // true
+
+                // Make our assertions.
+                expect(customer).toBe(true);
+
+                done();
+            });
+        });
+    }
    
 });
