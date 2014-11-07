@@ -31,7 +31,7 @@ describe("simpleDirective Test ", function(){
         }]);
         */
     } 
-
+    
     beforeEach(inject(function($compile,$rootScope) {
  
         // Move this tpl into an html file as well...
@@ -140,5 +140,4 @@ describe("simpleDirective Test ", function(){
             });
         });
     }
-   
 });
